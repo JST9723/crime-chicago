@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crime</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+
+
+<!-- Slider
+    ================================================== -->
+<link href="css/owl.carousel.css" rel="stylesheet" media="screen">
+<link href="css/owl.theme.css" rel="stylesheet" media="screen">
+
+<!-- Stylesheet
+    ================================================== -->
+<link rel="stylesheet" type="text/css"  href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/animate.min.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+
+<!-- Fonts  -->
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
+
+<script type="text/javascript" src="js/modernizr.custom.js"></script>
+
+<!-- Sankey -->
+<style>
+
+  .node rect {
+    cursor: move;
+    fill-opacity: .9;
+    shape-rendering: crispEdges;
+  }
+
+  .node text {
+    pointer-events: none;
+    text-shadow: 0 1px 0 #fff;
+  }
+
+  .link {
+    fill: none;
+    stroke: #000;
+    stroke-opacity: .2;
+  }
+
+  .link:hover {
+    stroke-opacity: .5;
+  }
+
+</style>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- Navigation
+    ==========================================-->
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#home">Crime Project</a></div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#home" class="page-scroll">Home</a></li>
+        <li><a href="#about-section" class="page-scroll">About</a></li>
+        <li><a href="#dataset-section" class="page-scroll">Dataset</a></li>
+        <li><a href="#analysis-section" class="page-scroll">Analysis</a></li>
+        <li><a href="#method-section" class="page-scroll">Methodology</a></li>
+        <li><a href="#contact-section" class="page-scroll">Predict</a></li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+
+<!-- Header -->
+<header class="text-center" name="home">
+  <div class="intro-text">
+    <h1 class="wow flipInX" style="visibility:visible;animation name:flipInX;"><span class="brand">Chicago Crime Analysis</span></h1>
+    <p class="wow fadeInDown" data-wow-delay="600ms">Using statistical methodologies with graphs to analyze</p>
+    <div class="clearfix"></div>
+    <a href="#about-section" class="btn btn-default btn-lg page-scroll wow fadeInDown" data-wow-delay="1000ms">About the Project</a> </div>
+</header>
+<!-- About Section -->
+<div id="about-section">
+  <div class="container">
+    <div class="row">
+      <div class="section-title text-center center wow fadeInDown">
+        <h2>About This Project</h2>
+        <hr>
+      </div>
+      <div class="row wow fadeIn" data-wow-delay="1500ms">
+        <div class="col-md-6"><br></br><img src="img/pic.png" alt="crime" height="320" width="550"></div>
+        <div class="col-md-6">
+          <div class="about-text">
+            <h3><span class="color">INTRODUCTION</span></h3>
+            <p>Crimes are a common social problem affecting the quality of life and the economic growth of a
+society. It is considered an essential factor that determines whether or not people move to a
+new city and what places should be avoided when they travel. With the increase of crimes,
+law enforcement agencies are continuing to demand advanced geographic information systems
+and new data mining approaches to improve crime analytics and better protect their communities. </p>
+            <h3><span class="color">OUR GOAL</span></h3>
+            <p>For this project, we use data mining and visualization tools to figure out the most common crime location and time. Using
+            regression, we try to predict the probability that a crime would happen with provided weather, location and time data. By providing a data mining approach
+to determine the most criminal hotspots and find the type, location and time of committed crimes,
+we hope to raise people’s awareness regarding the dangerous locations in certain time periods.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Dataset Section -->
+<div id="dataset-section">
+  <div class="container">
+    <div class="row">
+      <div class="section-title text-center center wow fadeIn">
+        <h2>Our Dataset</h2>
+        <hr>
+      </div>
+      <div class="row wow fadeIn" data-wow-delay="2000ms">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <div class="about-text text-center">
+            <h1 class="viz-title">What Our Data Contains</h1>
+            <h3 class="viz-subtitle">Key informaion related to crime location, date, type and weather at the time period.</h3><br>
+            <div id="subtitle-description">
+            <p>We obtain the crime information from <strong><a href="https://data.cityofchicago.org/Public-Safety/Crimes-2015/vwwp-7yr9">CHICAGO DATA PROTAL</a></strong> website,
+            which is an open data source that contains information about Chicago communities. In order to further explore what might affect the probability of a crime, we also
+            include some information about weather of Chicago at the corresponding time period. The two set of data are combined together for detailed analysis. The attributes we selected in order to explore crime patterns for our project:</p>
+            </div>　<br>
+            <div id="dataset-attributes">
+            <ul>
+             <li>Date: Date when the incident occurred (e.g. 12/31/2015 11:23:00 PM).</li>
+             <li>Crime Type: The primary description of the IUCR code (the Illinois Unifrom Crime Reporting code). Some major crime types appearred in this dataset include: theft, robbery, assault, criminal damage etc.</li>
+             <li>Location Description: Description of the location where the incident occurred. Some major locations appearred in this dataset include: restaurant, street, apartment, parking, school district, retail store etc.</li>
+             <li>District: Indicates the police district where the incident occurred. See the districts at https://data.cityofchicago.org/d/fthy-xz3r.</li>
+             <li>Block: The partially redacted address where the incident occurred, placing it on the same block as the actual address.</li>
+             <li>Longitude & Latitude: The longitude and latitude of the location where the incident occurred. This location is shifted from the actual location for partial redaction but falls on the same block.</li>
+             <li>Hourly Visibility: This shows the hourly visibility represented by an integer ranging from 0 to 10, which indicates the visibility of the time period. </li>
+             <li>Temperature: The temperature of the time period, which is reported by the Chicago weather station.</li>
+             <li>Wind Speed: This attribute describes the wind speed of the time period, represented by an integer that indicates the level of wind speed.</li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+     </div>
+  </div>
+</div>
+
+<br></br><br></br>
+
+<div id="analysis-section">
+  <div class="container">
+    <div class="row">
+      <div class="section-title text-center center wow fadeIn">
+        <h2>Analysis</h2>
+        <hr>
+      </div>
+      <div class="row wow fadeIn" data-wow-delay="200ms">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <div class="about-text text-center">
+            <h1 class="viz-title">Crime Types, Location and Time</h1>
+            <h3 class="viz-subtitle">Using visualization to better understand the crime patterns</h3>
+            <p>From the bubble chart visualization of crime location description, we discovered that most crimes happened on streets, residence house, sidewalks and
+            parking lots. Some other locations like retail stores, restaurants, department stores are also very likely to have crimes. This may suggest that given
+            a certain time period and under same condition, the probability of a crime would happened on a major street may be larger than the probabilityt that a
+            crime would happen at a school district. Given this information, although we can not conclude that crimes are more likely to happen at which location, we can
+            say that the type of the location is closely related to the crime rates and we can use it as a significant feature for our regression algorithm. </p>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row wow fadeIn" data-wow-delay="200ms">
+        <div class="col-md-1"></div>
+        <div class="col-md-8 text-center">
+          <div class='tableauPlaceholder' id='viz1494817022274' style='position: relative'><noscript><a href='#'><img alt='Location ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;lo&#47;location-type_0&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='location-type_0&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;lo&#47;location-type_0&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1494817022274');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+
+      <br></br>
+
+      <div class="row wow fadeIn" data-wow-delay="200ms">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <div class="about-text text-center">
+            <h3 class="viz-subtitle">Location on map and crime types</h3>
+            <p>The most common crime types include: theft, criminal damage, narcotics, burglary, robbery and deceptive practice. </p>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row wow fadeIn" data-wow-delay="200ms">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+          <iframe width="300" height="520" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?q=select+col10%2C+col11+from+1GxBmfrKM1eJpKp8Rf3NkZVJl49-gElRQ71DoIn4A+limit+1000&amp;viz=HEATMAP&amp;h=true&amp;lat=41.83636259580024&amp;lng=-87.66938385225001&amp;t=1&amp;z=10&amp;l=col10&amp;y=2&amp;tmplt=2&amp;hmd=true&amp;hmg=%2366ff0000%2C%2393ff00ff%2C%23c1ff00ff%2C%23eeff00ff%2C%23f4e300ff%2C%23f4e300ff%2C%23f9c600ff%2C%23ffaa00ff%2C%23ff7100ff%2C%23ff3900ff%2C%23ff0000ff&amp;hmo=0.55&amp;hmr=13&amp;hmw=0&amp;hml=TWO_COL_LAT_LNG"></iframe>
+        </div>
+        <div class="col-md-7">
+        	<div class='tableauPlaceholder' id='viz1494803900046' style='width:700px; height:500px; position: relative'><noscript><a href='#'><img alt='Crime Type ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;CrimeType_0&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='CrimeType_0&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;CrimeType_0&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1494803900046');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Portfolio Section -->
+<div id="method-section">
+  <div class="container">
+    <div class="row">
+      <div class="section-title text-center center wow fadeIn">
+        <h2>Our Steps</h2>
+        <hr>
+      </div>
+      <div class="row wow fadeIn" data-wow-delay="200ms">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <div class="about-text text-center">
+            <h1 class="viz-title">Data Cleaning</h1>
+
+            <p>The original data was cleaned and analyzed by Dataiku DataScienceStudio to eliminate any blank or invalid rows and columns.
+            Over 80 kinds of location_type data was then manually categorized and reduced to 20 as we group similar types.
+            In the end, only useful column like date, location, crime type and weather condition were kept in the csv file.
+            The original dataset includes domestic crimes that happened indoor, which are not relevant to our project. Thus, those types of crimes were excluded from the
+            dataset.</p>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+
+
+      <div class="section-title text-center center wow fadeInDown">
+        <hr>
+      </div>
+
+      <div class="row wow fadeIn" data-wow-delay="200ms">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <div class="about-text text-center">
+            <h1 class="viz-title">Data Processing</h1>
+            <p>The original dataset does not contain all the attributes we want and is not well formated. The separated dataset was merged together
+            and we use several statistical tools to manipulate some of the attributes in order to conduct regression.</p>
+          	<!--Accordion-->
+
+          	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-custom">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            	COMBINE THE DATA
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body animated zoomIn">
+                        <br></br>
+                        <p>We get the crime rate of each district and add that information to the original dataset because we are interested to
+                        know the reported crime rate of these areas. When merging the data, we chose several attributes from the Chicago weather
+                        dataset including "temperature", "wind speed" and "hourly visibility". With all these information, we are able to conduct
+                        regression to predict the crime rate.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-custom">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            MODIFY DATA FORMAT
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body animated zoomIn">
+                        <br></br>
+                        <p>Some of the original data format is not useful for our analysis and regresssion algorithm. For example, the "Date" of the crime
+                        is recorded with the normal date format which includes and date and time like 10/31/2015 10:23:00 PM. When we conduct regression,
+                        we try to find the pattern between the time period of the day and the crime rate. Therefore, we change the data format into "time of day"
+                        ranging from 0 - 23, which makes it easier to explore pattern between time of day and crime rate.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-custom">
+                <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                    <i class="glyphicon glyphicon-plus"></i>
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            USING K MEANS
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body animated zoomIn"><br>
+                        <p>We use the k-means clustering machine learning method to explore the data. K-means groups similar objects into the same
+                        group. In this way, it’s a much efficient way to extract information from a very large dataset and find similarities among
+                        the features of the crime record.</p>
+                        <p><img src="img/k_means.png" alt="crime" height="450" width="600"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Accordion End -->
+
+
+
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row wow fadeIn" data-wow-delay="200ms">
+        <div class="col-md-12 text-center">
+          <div id="chart1"></div>
+        </div>
+      </div>
+
+      <div class="section-title text-center center wow fadeIn">
+        <hr>
+      </div>
+
+      <div class="row wow fadeIn" data-wow-delay="200ms">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <div class="about-text text-center">
+            <h1 class="viz-title">Regression</h1>
+         	<p>We use multiple regression model to calculate the relationship between crime rate and its relative features in R. Here’s the command: <code>
+fit = glm(chicago$Crime~factor(chicago$Date) + factor(chicago$Location_Description) + factor(chicago$District)+ chicago$HourlyVisibility + chicago$Temperature + chicago$WindSpeed)</code></p>
+			<p><img src="img/regression.png" alt="crime" height="450" width="690"></p>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<br></br>
+
+<!-- Contact Section -->
+<div id="contact-section">
+  <div class="container">
+    <div class="section-title text-center wow fadeIn">
+      <h2>Predict Crime</h2>
+      <hr>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="col-md-12 wow fadeIn" data-wow-delay="200ms">
+      <h3>Fill out these features </h3>
+      <form name="sentMessage" id="contactForm" novalidate>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <h4>District</h4>
+              <select id="districts" name="districts" class="form-control" required="required">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+            	<option value="25">25</option>
+              </select>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <h4>Location</h4>
+              <select id="location" name="location" class="form-control" required="required">
+                <option value="1">Street/Highway</option>
+                <option value="2">Store</option>
+                <option value="3">Residence</option>
+                <option value="4">Apartment</option>
+                <option value="6">Restaurant</option>
+                <option value="7">Sidewalk</option>
+                <option value="8">Parking Lot</option>
+                <option value="9">Public Property</option>
+                <option value="10">School</option>
+                <option value="11">Public Transportation</option>
+                <option value="12">Hotel/Motel</option>
+                <option value="13">Office</option>
+                <option value="14">Alley</option>
+                <option value="15">Vehicle</option>
+                <option value="16">Bank/ATM</option>
+                <option value="17">Gas Station</option>
+                <option value="18">Medical Building</option>
+                <option value="19">Vacant Building</option>
+                <option value="5">Other</option>
+              </select>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <h4>Time</h4>
+              <select id="time" name="time" class="form-control" required="required">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+              </select>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <h4>Wind Speed</h4>
+              <select id="wind" name="wind" class="form-control" required="required">
+                <option value="3">1-5</option>
+                <option value="8">6-10</option>
+                <option value="13">11-15</option>
+                <option value="17">16-20</option>
+                <option value="23">21-25</option>
+                <option value="28">26-30</option>
+              </select>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <h4>Visibility</h4>
+              <select id="visibility" name="visibility" class="form-control" required="required">
+                <option value="1">Not Clear</option>
+                <option value="3">Relatively Not Clear</option>
+                <option value="5">Medium</option>
+                <option value="7">Relatively Clear</option>
+                <option value="10">Very Clear</option>
+              </select>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <h4>Temperature Range</h4>
+              <select id="temperature" name="temperature" class="form-control" required="required">
+                <option value="5">Below 10</option>
+                <option value="13">11-15</option>
+                <option value="17">16-20</option>
+                <option value="23">21-25</option>
+                <option value="28">26-30</option>
+                <option value="33">31-35</option>
+                <option value="37">36-40</option>
+                <option value="43">41-45</option>
+                <option value="47">46-50</option>
+                <option value="53">51-55</option>
+                <option value="57">56-60</option>
+                <option value="63">61-65</option>
+                <option value="67">66-70</option>
+                <option value="73">71-75</option>
+                <option value="77">76-80</option>
+                <option value="83">81-85</option>
+                <option value="87">Above 85</option>
+              </select>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+        </div>
+
+
+        <div id="ranking"></div>
+        <div class="row text-center">
+         <p onclick="getRanking();">Get Prediction!</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="footer" class="text-center">
+  <div class="container">
+    <p>Data Pipeline Final Project Copyright 2017 &copy; Aijin Wang | Siting Jin</p>
+  </div>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.1.11.1.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/SmoothScroll.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/jquery.counterup.js"></script>
+<script type="text/javascript" src="js/waypoints.js"></script>
+<script type="text/javascript" src="js/jquery.isotope.js"></script>
+<script type="text/javascript" src="js/jqBootstrapValidation.js"></script>
+<script type="text/javascript" src="js/contact_me.js"></script>
+<script type="text/javascript" src="js/owl.carousel.js"></script>
+<script type="text/javascript" src="/js/sankey.js"></script>
+
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+<script type="text/javascript">
+  $(function() {
+    $('.toggle').bootstrapToggle({
+      on: 'Yes',
+      off: 'No'
+    });
+  })
+  function getRanking(){
+    var neighborhoods = parseInt($("#districts").val());
+    var attire = parseInt($("#location").val());
+    var pricerange = parseInt($("#time").val());
+    var noiselevel = parseInt($("#visibility").val());
+    var wind = parseInt($("#visibility").val());
+    var temperature = parseInt($("#temperature").val());
+
+    var score = 0.1460 + (-0.001615 * neighborhoods) + (0.0002101 * attire) + (0.00004105 * pricerange)
+    + (0.0001011 * noiselevel) + (-0.00002478 * wind) + (-0.00001569 * temperature);
+
+    var ranking = Math.round(score * 100000)/100000;
+
+    $("#ranking").html('<div class="row wow fadeInDown text-center" data-wow-delay="400ms"><div class="col-md-12 col-sm-12"><div class="achievement-box"> <span class="count" style="color: black;">' + ranking + '</span><h4 style="color:black;">Possibility</h4></div></div></div>');
+
+    $('#ranking span.count').counterUp({
+          delay: 10, // the delay time in ms
+      time: 1000 // the speed time in ms
+      });
+  }
+</script>
+
+
+
+
+<script type="text/javascript" src="js/main.js"></script>
+
+
+</body>
+</html>

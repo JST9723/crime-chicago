@@ -1,0 +1,23 @@
+.btn-space {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.nav-wrapper {
+	padding-left:10px;	
+	background-color:white;
+}
+
+.nav-wrapper a{
+	color:black;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing:1px;
+	font-family:'Glegoo', serif;
+	text-decoration:none;
+}
+
+.nav-wrapper a:hover{
+	color: #FF9900;
+}
+
